@@ -15,7 +15,7 @@ export default {
         type: null,
       },
     },
-    onClick: {},
+    onClick: { action: "clicked" },
     disabled: false,
   },
 };
