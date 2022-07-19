@@ -1,6 +1,6 @@
 <script setup>
 import { toRefs } from "vue";
-defineEmits(["buttonClick"]);
+const emit = defineEmits(["buttonClick"]);
 const props = defineProps({
   title: {
     type: String,
@@ -17,6 +17,10 @@ const props = defineProps({
 });
 
 const { title, buttonStyle, disabled } = toRefs(props);
+
+const buttonClick = () => {
+  emit("buttonClick");
+};
 </script>
 <template>
   <button
@@ -24,7 +28,7 @@ const { title, buttonStyle, disabled } = toRefs(props);
     :disabled="disabled"
     class="baseButton"
     :class="[buttonStyle, { disabled: disabled }]"
-    @click.prevent="$emit('buttonClick')"
+    @click.prevent="buttonClick"
   >
     {{ title }}
   </button>
