@@ -15,9 +15,7 @@ export default {
         type: null,
       },
     },
-    onClick: {
-      name: "test",
-    },
+    onClick: {},
     disabled: false,
   },
 };
