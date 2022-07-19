@@ -11,8 +11,10 @@ export default {
     buttonClick: {
       description: "@buttonClick",
       default: "buttonClick",
-      control: { type: "select" },
-      options: ["buttonClick"],
+      control: {
+        type: null,
+      },
+      actions: "Clicked",
     },
     disabled: false,
   },
@@ -22,11 +24,12 @@ const Template = (args) => ({
   components: { BaseButton },
   setup() {
     const onClick = () => {
-      alert("Click");
+      //   alert("Click");
+      // console.log("hi");
     };
     return { args, onClick };
   },
-  template: '<base-button v-bind="args" @buttonClick="onClick"/>',
+  template: '<base-button v-bind="args"/>',
 });
 
 export const Button = Template.bind({});

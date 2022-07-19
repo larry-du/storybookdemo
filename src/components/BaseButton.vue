@@ -4,7 +4,7 @@ defineEmits(["buttonClick"]);
 const props = defineProps({
   title: {
     type: String,
-    default: "",
+    default: "hi",
   },
   buttonStyle: {
     type: String,
