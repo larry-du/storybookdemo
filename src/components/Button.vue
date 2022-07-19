@@ -1,5 +1,5 @@
 <template>
-  <button type="button" :class="classes" @click="onClick" :style="style">
+  <button type="button" :class="classes" @click="$emit('click')" :style="style">
     {{ label }}
   </button>
 </template>
@@ -44,9 +44,6 @@ export default {
       style: computed(() => ({
         backgroundColor: props.backgroundColor,
       })),
-      onClick() {
-        emit("click");
-      },
     };
   },
 };
