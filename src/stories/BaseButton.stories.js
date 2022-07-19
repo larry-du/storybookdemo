@@ -14,9 +14,10 @@ export default {
       control: {
         type: null,
       },
-      actions: "Clicked",
     },
-    onClick: {},
+    onClick: {
+      name: "test",
+    },
     disabled: false,
   },
 };
