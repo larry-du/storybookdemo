@@ -16,6 +16,7 @@ export default {
       },
       actions: "Clicked",
     },
+    onClick: {},
     disabled: false,
   },
 };
