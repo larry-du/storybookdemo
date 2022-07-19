@@ -6,7 +6,7 @@ export default {
     title: "check",
     buttonStyle: {
       control: { type: "select" },
-      options: ["navy", "white"],
+      options: ["none", "navy", "white"],
     },
     buttonClick: {
       description: "@buttonClick",
