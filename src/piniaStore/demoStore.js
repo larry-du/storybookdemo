@@ -1,17 +1,24 @@
 import { defineStore } from "pinia";
 
-export const piniaDemo = defineStore("piniaDemo", {
+export default defineStore("piniaDemo", {
   state: () => ({
-    foo: { number: 0 },
+    foo: { number: 1 },
+    text: "",
   }),
   actions: {
     addFoo(count) {
       this.foo = count;
     },
+    addText(text) {
+      this.text = text;
+    },
   },
   getters: {
     getFoo() {
       return this.foo;
+    },
+    getText() {
+      return this.text;
     },
   },
 });

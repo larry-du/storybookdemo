@@ -1,26 +1,49 @@
 <script setup>
-import { piniaDemo } from "@/piniaStore/demoStore";
+import { piniaDemo, piniaDemo2 } from "@/piniaStore";
+import { Field, Form, ErrorMessage } from "vee-validate";
+// import * as yup from "yup";
+import { yup } from "@/plugins";
+import { ref } from "vue";
 const store = piniaDemo();
+const secondStore = piniaDemo2();
 
 const test = () => {
   console.log("hi");
 };
+
+const schema = yup.object({
+  password: yup.string().trim().length(4).required(),
+});
 </script>
 
 <template>
   <h1>Pinia Demo</h1>
-  <div>{{ store.getFoo.number }}</div>
-  <div>
-    <BaseButton title="hi" @buttonClick="test" buttonStyle="navy"></BaseButton>
-  </div>
-  <button
-    @click.prevent="
-      store.addFoo({ ...store.getFoo, number: Number(store.getFoo.number + 1) })
-    "
-  >
-    add
-  </button>
+  <pre>{{ store.getText }}</pre>
 
+  <Form :validationSchema="schema">
+    <div style="width: 80%; margin: auto">
+      <Field
+        name="password"
+        :modelValue="store.getText"
+        @update:modelValue="store.addText($event)"
+        v-slot="{ errorMessage, field, value }"
+      >
+        <QInput
+          maxlength="4"
+          label="label test"
+          v-bind="field"
+          :modelValue="value"
+          :error="!!errorMessage"
+          :error-message="errorMessage"
+        >
+        </QInput>
+        <pre>{{ errorMessage }}</pre>
+      </Field>
+    </div>
+  </Form>
+
+  <div>{{ store.getFoo.number }}</div>
+  <font-awesome-icon :icon="['fas', 'pen']" />
   <input
     type="number"
     :value="store.getFoo.number"
@@ -28,6 +51,45 @@ const test = () => {
       store.foo = { ...store.getFoo, number: Number($event.target.value) }
     "
   />
+
+  <div class="q-pa-md q-gutter-sm">
+    <QBtn
+      @click="
+        store.addFoo({
+          ...store.getFoo,
+          number: Number(store.getFoo.number + 1),
+        })
+      "
+      no-caps
+      style="background: #ff0080; color: white"
+      label="Quasar Add"
+    />
+  </div>
+
+  <div>{{ secondStore.getFoo2.number }}</div>
+
+  <input
+    type="number"
+    :value="secondStore.getFoo2.number"
+    @input="
+      secondStore.foo2 = {
+        ...secondStore.getFoo2,
+        number: Number($event.target.value),
+      }
+    "
+  />
+  <div style="margin-top: 20px">
+    <BaseButton
+      title="custom button"
+      @click="
+        secondStore.addFoo2({
+          ...secondStore.getFoo2,
+          number: Number(secondStore.getFoo2.number + 1),
+        })
+      "
+      buttonStyle="navy"
+    ></BaseButton>
+  </div>
 </template>
 
 <style scoped></style>
