@@ -11,8 +11,13 @@ const test = () => {
   console.log("hi");
 };
 
+const selectModel = ref("");
+
+const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
+
 const schema = yup.object({
   password: yup.string().trim().length(4).required(),
+  selectTest: yup.string().trim().required(),
 });
 </script>
 
@@ -38,6 +43,22 @@ const schema = yup.object({
         >
         </QInput>
         <pre>{{ errorMessage }}</pre>
+      </Field>
+      <Field
+        name="selectTest"
+        :modelValue="selectModel"
+        @update:modelValue="selectModel = $event"
+        v-slot="{ errorMessage, field, value }"
+      >
+        <QSelect
+          filled
+          v-bind="field"
+          :options="options"
+          :modelValue="value"
+          label="Filled"
+          :error="!!errorMessage"
+          :error-message="errorMessage"
+        />
       </Field>
     </div>
   </Form>
