@@ -11,6 +11,11 @@ const test = () => {
   console.log("hi");
 };
 
+const onSubmit = (values, { resetForm }) => {
+  console.log("Submitted", values);
+  resetForm();
+};
+
 const selectModel = ref("");
 
 const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
@@ -24,8 +29,9 @@ const schema = yup.object({
 <template>
   <h1>Pinia Demo</h1>
   <pre>{{ store.getText }}</pre>
+  <pre>{{ selectModel }}</pre>
 
-  <Form :validationSchema="schema">
+  <Form :validationSchema="schema" @submit="onSubmit">
     <div style="width: 80%; margin: auto">
       <Field
         name="password"
@@ -61,6 +67,18 @@ const schema = yup.object({
         />
       </Field>
     </div>
+    <QBtn
+      type="Submit"
+      no-caps
+      style="background: #ff0080; color: white"
+      label="test"
+    />
+    <QBtn
+      type="reset"
+      no-caps
+      style="background: #ff0080; color: white"
+      label="reset"
+    />
   </Form>
 
   <div>{{ store.getFoo.number }}</div>
@@ -82,7 +100,7 @@ const schema = yup.object({
         })
       "
       no-caps
-      style="background: #ff0080; color: white"
+      class="test"
       label="Quasar Add"
     />
   </div>
@@ -113,4 +131,8 @@ const schema = yup.object({
   </div>
 </template>
 
-<style scoped></style>
+<style lang="sass" scoped>
+.test
+  background: #ff0080
+  color: white
+</style>
