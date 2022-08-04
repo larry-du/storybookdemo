@@ -30,6 +30,7 @@ const schema = yup.object({
   <h1>Pinia Demo</h1>
   <pre>{{ store.getText }}</pre>
   <pre>{{ selectModel }}</pre>
+  <h1>API Test {{ store.getApiTest }}</h1>
 
   <Form :validationSchema="schema" @submit="onSubmit">
     <div style="width: 80%; margin: auto">
