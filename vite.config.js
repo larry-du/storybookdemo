@@ -12,6 +12,16 @@ import checker from "vite-plugin-checker";
 import { quasar, transformAssetUrls } from "@quasar/vite-plugin";
 
 export default defineConfig({
+  rollupOptions: {
+    output: {
+      manualChunks: {
+        "group-user": ["./src/views/About"],
+      },
+    },
+  },
+  server: {
+    port: "8080",
+  },
   plugins: [
     vue({
       template: { transformAssetUrls },

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { piniaDemo } from "@/piniaStore";
 import Home from "@/views/Home.vue";
+// import About from "@/views/About.vue";
 
 const routes = [
   {
@@ -16,6 +17,11 @@ const routes = [
       }
       next();
     },
+  },
+  {
+    path: "/about",
+    name: "About",
+    component: () => import("@/views/About.vue"),
   },
 ];
 

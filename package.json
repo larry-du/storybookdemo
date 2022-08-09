@@ -24,9 +24,12 @@
     "espree": "^9.3.2",
     "pinia": "^2.0.16",
     "quasar": "^2.7.5",
+    "tsparticles": "^2.1.4",
+    "tsparticles-engine": "^2.1.4",
     "vee-validate": "^4.6.2",
     "vue": "^3.2.25",
     "vue-router": "^4.1.2",
+    "vue3-particles": "^2.1.4",
     "yup": "^0.32.11"
   },
   "devDependencies": {

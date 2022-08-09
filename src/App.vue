@@ -6,17 +6,24 @@
 
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
+  <div class="links">
+    <router-link :to="{ name: 'Home' }">Home</router-link>
+    <router-link :to="{ name: 'About' }">About</router-link>
+  </div>
+
   <!-- <HelloWorld msg="Hello Vue 3 + Vite" /> -->
   <router-view></router-view>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="sass">
+#app
+  font-family: Avenir, Helvetica, Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  text-align: center
+  color: #2c3e50
+  margin-top: 60px
+.links
+  a+a
+    margin-left: 10px
 </style>
