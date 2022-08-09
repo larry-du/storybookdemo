@@ -18,6 +18,7 @@ const particlesOption = ref({
   },
   fpsLimit: 120,
   interactivity: {
+    detect_on: "canvas",
     events: {
       onClick: {
         enable: false,
@@ -25,7 +26,7 @@ const particlesOption = ref({
       },
       onHover: {
         enable: true,
-        mode: ["grab"],
+        mode: ["grab", "repulse"],
       },
       resize: true,
     },
@@ -41,10 +42,10 @@ const particlesOption = ref({
       },
       repulse: {
         distance: 100,
-        duration: 0.4,
+        duration: 1,
       },
       grab: {
-        distance: 180,
+        distance: 250,
       },
     },
   },
@@ -59,24 +60,30 @@ const particlesOption = ref({
       opacity: 0.5,
       width: 1,
     },
-    collisions: {
-      enable: true,
-    },
+    // collisions: {
+    //   enable: true,
+    //   mode: "bounce",
+    // },
     move: {
       direction: "none",
       enable: true,
       outMode: "bounce",
       random: false,
-      speed: 1,
+      speed: 1.5,
       straight: false,
-      bounce: true,
+      bounce: false,
+      attract: {
+        enable: true,
+        rotateX: 600,
+        rotateY: 1200,
+      },
     },
     number: {
       density: {
         enable: true,
         area: 2000,
       },
-      value: 70,
+      value: 50,
     },
     opacity: {
       value: 1,
