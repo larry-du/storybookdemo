@@ -5,7 +5,10 @@ import { fileURLToPath, URL } from "url";
 
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
-import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+import {
+  ElementPlusResolver,
+  QuasarResolver,
+} from "unplugin-vue-components/resolvers";
 import eslintPlugin from "vite-plugin-eslint";
 import checker from "vite-plugin-checker";
 
@@ -34,10 +37,10 @@ export default defineConfig({
       },
     }),
     AutoImport({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver(), QuasarResolver()],
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver(), QuasarResolver()],
     }),
   ],
 

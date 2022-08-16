@@ -8,7 +8,7 @@ import { quasar, FontAwesomeIcon, Particles } from "./plugins";
 const pinia = createPinia();
 
 createApp(App)
-  .use(quasar)
+  // .use(quasar)
   .use(Particles)
   .component("font-awesome-icon", FontAwesomeIcon)
   .use(pinia)
