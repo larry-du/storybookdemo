@@ -1,5 +1,8 @@
 <script setup>
 import { ref, computed } from "vue";
+const countStart = ref(0);
+const countEnd = ref(2);
+
 const tableData = ref([
   {
     date: "2016-05-03",
@@ -18,10 +21,170 @@ const tableData = ref([
   },
   {
     date: "2016-05-01",
+    name: "Tom123",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-02",
+    name: "To",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-04",
+    name: "Tomaaa",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-01",
+    name: "Tomvvv",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-03",
     name: "Tom",
     address: "No. 189, Grove St, Los Angeles",
   },
+  {
+    date: "2016-05-02",
+    name: "Tom",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-04",
+    name: "Tom",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-01",
+    name: "Tom123",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-02",
+    name: "To",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-04",
+    name: "Tomaaa",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-01",
+    name: "Tomvvv",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-03",
+    name: "Tom",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-02",
+    name: "Tom",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-04",
+    name: "Tom",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-01",
+    name: "Tom123",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-02",
+    name: "To",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-04",
+    name: "Tomaaa",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-01",
+    name: "Tomvvv",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-03",
+    name: "Tom",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-02",
+    name: "Tom",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-04",
+    name: "Tom",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-01",
+    name: "Tom123",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-02",
+    name: "To",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-04",
+    name: "Tomaaa",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-01",
+    name: "Tomvvv",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-03",
+    name: "Tom",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-02",
+    name: "Tom",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-04",
+    name: "Tom",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-01",
+    name: "Tom123",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-02",
+    name: "To",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-04",
+    name: "Tomaaa",
+    address: "No. 189, Grove St, Los Angeles",
+  },
+  {
+    date: "2016-05-01",
+    name: "Tomvvv",
+    address: "No. 189, Grove St, Los Angeles",
+  },
 ]);
+
+const test = computed(() => {
+  return tableData.value.slice();
+});
+
 const tableHead = computed(() => {
   const [head] = tableData.value;
   return Object.keys(head);
@@ -47,7 +210,7 @@ const tableHead = computed(() => {
     </thead>
     <tbody>
       <transition-group class="number-list" name="list">
-        <tr v-for="(table, index) in tableData" :key="table.date">
+        <tr v-for="(table, index) in tableData" :key="index">
           <th scope="row">{{ index + 1 }}</th>
           <td>{{ table.date }}</td>
           <td>{{ table.name }}</td>
@@ -63,7 +226,7 @@ const tableHead = computed(() => {
         ...tableData,
         {
           date: '2016-05-01',
-          name: 'Tom123',
+          name: 'Tomvvv',
           address: 'No. 189, Grove St, Los Angeles',
         },
       ]
@@ -75,6 +238,15 @@ const tableHead = computed(() => {
 </template>
 
 <style lang="scss">
+table {
+  position: relative;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+}
+
 .list-enter-active,
 .list-leave-active,
 .list-move {
