@@ -11,7 +11,6 @@ import {
 } from "unplugin-vue-components/resolvers";
 import eslintPlugin from "vite-plugin-eslint";
 import checker from "vite-plugin-checker";
-
 import { quasar, transformAssetUrls } from "@quasar/vite-plugin";
 
 export default defineConfig({
@@ -37,10 +36,10 @@ export default defineConfig({
       },
     }),
     AutoImport({
-      resolvers: [ElementPlusResolver(), QuasarResolver()],
+      resolvers: [ElementPlusResolver()],
     }),
     Components({
-      resolvers: [ElementPlusResolver(), QuasarResolver()],
+      resolvers: [ElementPlusResolver()],
     }),
   ],
 
