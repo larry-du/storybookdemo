@@ -19,7 +19,7 @@ const touchStartPosition = ref(0);
 const currentTableData = computed(() => {
   return tableData.value.slice(countStart.value, countStart.value + perCount);
 });
-const foo = computed(() => {
+const totalSet = computed(() => {
   return Math.floor(tableData.value.length / perCount);
 });
 const tableHead = computed(() => {
@@ -36,9 +36,8 @@ const touchEnd = (e) => {
     if (countStart.value <= 0) return;
     preTable();
   }
-
   if (changePosition - touchStartPosition.value < leftDistance) {
-    if (countStart.value >= foo.value * perCount) return;
+    if (countStart.value >= totalSet.value * perCount) return;
     nextTable();
   }
 };
@@ -79,7 +78,10 @@ const nextTable = () => {
   </table>
   <div class="operation">
     <button @click.prevent="preTable" :disabled="countStart <= 0">prev</button>
-    <button @click.prevent="nextTable" :disabled="countStart >= foo * perCount">
+    <button
+      @click.prevent="nextTable"
+      :disabled="countStart >= totalSet * perCount"
+    >
       next
     </button>
   </div>
