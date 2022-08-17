@@ -73,6 +73,7 @@ const nextTable = () => {
         </td>
         <td>{{ table.name }}</td>
         <td>{{ table.address }}</td>
+        <td>{{ table.id }}</td>
       </tr>
     </transition-group>
   </table>
