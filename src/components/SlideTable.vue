@@ -95,10 +95,11 @@ const nextTable = () => {
 table {
   position: relative;
   width: 100%;
-  background-color: aquamarine;
+  background-color: rgba(127, 255, 212, 0.6);
   table-layout: fixed;
   border-collapse: collapse;
   border: 1px solid;
+  overflow: hidden;
 }
 
 thead {

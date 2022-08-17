@@ -86,7 +86,7 @@ export default defineStore("piniaDemo2", {
           type: ["image"],
           // type: "circle",
           image: {
-            src: "https://i.imgur.com/dPdsBBH.png",
+            src: "https://i.imgur.com/Mq887tw.png",
             width: 500,
             height: 500,
           },
