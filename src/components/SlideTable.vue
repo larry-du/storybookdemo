@@ -1,5 +1,5 @@
 <script setup>
-import "@/assets/sass/vueEffect.sass";
+import "@/assets/sass/vueCustomEffect.scss";
 import { ref, computed, toRefs } from "vue";
 
 const props = defineProps({
