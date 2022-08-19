@@ -77,23 +77,24 @@ const nextTable = () => {
   >
     <thead>
       <!-- <transition-group tag="tr" :name="effect"> -->
-      <tr>
+      <!-- <tr>
         <th key="empty"></th>
         <th v-for="head in tableHead" :key="head">{{ head }}</th>
-      </tr>
+      </tr> -->
       <!-- </transition-group> -->
     </thead>
-    <transition-group tag="tbody" :name="effect">
-      <tr v-for="(table, index) in currentTableData" :key="table.name">
-        <th scope="row">{{ index + 1 }}</th>
-        <td>
-          {{ table.date }}
-        </td>
-        <td>{{ table.name }}</td>
-        <td>{{ table.address }}</td>
-        <td>{{ table.id }}</td>
+    <!-- <transition-group tag="tbody" :name="effect"> -->
+    <tbody>
+      <tr v-for="filled in tableHead" :key="filled">
+        <th scope="row">{{ filled }}</th>
+        <transition-group :name="effect">
+          <td v-for="table in currentTableData" :key="table.id">
+            {{ table[filled] }}
+          </td>
+        </transition-group>
       </tr>
-    </transition-group>
+    </tbody>
+    <!-- </transition-group> -->
   </table>
   <div class="operation">
     <button @click.prevent="preTable" :disabled="countStart <= 0">prev</button>

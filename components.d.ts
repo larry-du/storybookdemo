@@ -10,6 +10,8 @@ declare module '@vue/runtime-core' {
     BaseButton: typeof import('./src/components/BaseButton.vue')['default']
     Button: typeof import('./src/components/Button.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    ReverseTable: typeof import('./src/components/ReverseTable.vue')['default']
+    ReversTable: typeof import('./src/components/ReversTable.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SlideTable: typeof import('./src/components/SlideTable.vue')['default']

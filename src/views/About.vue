@@ -11,6 +11,7 @@ const particlesInit = async (engine) => {
 
 <template>
   <SlideTable :tableData="store.getTable"></SlideTable>
+  <ReverseTable :tableData="store.getTable"></ReverseTable>
   <Particles
     id="tsparticles"
     :particlesInit="particlesInit"

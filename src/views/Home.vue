@@ -27,6 +27,9 @@ const schema = yup.object({
 </script>
 
 <template>
+  <!-- <pre>{{ store.getReverseTable }}</pre> -->
+  <ReverseTable :tableData="store.getTable"></ReverseTable>
+
   <h1>Pinia Demo</h1>
   <pre>{{ store.getText }}</pre>
   <pre>{{ selectModel }}</pre>
