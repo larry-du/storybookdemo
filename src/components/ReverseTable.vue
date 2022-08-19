@@ -89,7 +89,7 @@ const nextTable = () => {
         <th scope="row">{{ filled }}</th>
         <transition-group :name="effect">
           <td v-for="table in currentTableData" :key="table.id">
-            {{ table[filled] }}
+            <div class="inner">{{ table[filled] }}</div>
           </td>
         </transition-group>
       </tr>
@@ -130,16 +130,36 @@ thead {
   top: 0;
 }
 
-td,
 th {
-  width: 100%;
+  width: 50%;
   white-space: normal;
   border-bottom: 1px solid;
-  border-left: 1px solid;
-  border-right: 1px solid;
+  // border-left: 1px solid;
+  // border-right: 1px solid;
 }
 
 td {
+  width: 100%;
+  white-space: normal;
+  border-bottom: 1px solid;
+}
+.inner {
+  position: relative;
   padding: 20px;
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 0;
+    width: 5px;
+    background-color: red;
+  }
+  :first-of-type {
+    &::after {
+      display: none;
+    }
+  }
 }
 </style>
