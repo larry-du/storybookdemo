@@ -26,8 +26,8 @@ onUnmounted(() => {
 });
 
 const reCount = (e) => {
-  const xl = e.target.innerWidth > 992;
-  if (xl) return (perCount.value = 4);
+  const isPCSetting = e.target.innerWidth > 992;
+  if (isPCSetting) return (perCount.value = 4);
   perCount.value = 2;
 };
 
@@ -86,10 +86,17 @@ const nextTable = () => {
     <!-- <transition-group tag="tbody" :name="effect"> -->
     <tbody>
       <tr v-for="filled in tableHead" :key="filled">
-        <th scope="row">{{ filled }}</th>
+        <!-- <th scope="row">{{ filled }}</th> -->
         <transition-group :name="effect">
-          <td v-for="table in currentTableData" :key="table.id">
-            <div class="inner">{{ table[filled] }}</div>
+          <td
+            class="test"
+            v-for="(table, index) in currentTableData"
+            :key="table.id"
+          >
+            <div class="inner">
+              <div v-if="index === 0">{{ filled }}</div>
+              <div>{{ table[filled] }}</div>
+            </div>
           </td>
         </transition-group>
       </tr>
@@ -134,8 +141,6 @@ th {
   width: 50%;
   white-space: normal;
   border-bottom: 1px solid;
-  // border-left: 1px solid;
-  // border-right: 1px solid;
 }
 
 td {
@@ -156,9 +161,24 @@ td {
     width: 5px;
     background-color: red;
   }
-  :first-of-type {
+}
+.test:first-of-type {
+  .inner {
     &::after {
       display: none;
+    }
+  }
+}
+.listReverse-enter-active,
+.listReverse-leave-active,
+.list-enter-active,
+.list-leave-active,
+.list-move,
+.listReverse-move {
+  transition: opacity 0.7s, transform 0.7s;
+  .inner {
+    &::after {
+      opacity: 0;
     }
   }
 }

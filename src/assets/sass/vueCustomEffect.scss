@@ -13,17 +13,15 @@
   opacity: 0;
   transform: translateX(-100%);
 }
-.list-leave-to {
+.list-leave-to,.list-leave-from {
   opacity: 0;
 }
-.list-leave-from {
-  opacity: 0;
-  height: 0;
-}
+
 .listReverse-enter-active,
 .listReverse-leave-active,
 .listReverse-move {
-  transition: opacity 0.7s, transform 0.7s;
+  transition: opacity 0.7s, transform 20s;
+  
 }
 .listReverse-leave-active {
   position: absolute;
@@ -35,10 +33,6 @@
   opacity: 0;
   transform: translateX(100%);
 }
-.listReverse-leave-to {
+.listReverse-leave-to,.listReverse-leave-from {
   opacity: 0;
-}
-.listReverse-leave-from {
-  opacity: 0;
-  height: 0;
 }
