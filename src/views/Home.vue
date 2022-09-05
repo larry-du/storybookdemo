@@ -1,15 +1,10 @@
 <script setup>
 import { piniaDemo, piniaDemo2 } from "@/piniaStore";
 import { Field, Form, ErrorMessage, FieldArray } from "vee-validate";
-// import * as yup from "yup";
 import { yup } from "@/plugins";
 import { ref } from "vue";
 const store = piniaDemo();
 const secondStore = piniaDemo2();
-
-const test = () => {
-  console.log("hi");
-};
 
 const onSubmit = (values, { resetForm }) => {
   console.log("Submitted", values);
@@ -36,6 +31,43 @@ const schema = yup.object({
     :initial-values="store.getInitialData"
     @submit="onSubmit"
   >
+    <div v-for="(link, index) in store.getInitialData.links" :key="link.id">
+      <Field
+        :name="`links[${index}].title`"
+        :modelValue="link.title"
+        @update:modelValue="link.title = $event"
+        v-slot="{ errorMessage, field, value }"
+      >
+        <QInput
+          label="label test"
+          v-bind="field"
+          :modelValue="value"
+          :error="!!errorMessage"
+          :error-message="errorMessage"
+        >
+        </QInput>
+        <pre>{{ errorMessage }}</pre>
+      </Field>
+    </div>
+    <button
+      type="button"
+      @click.prevent="
+        store.initialData = {
+          ...store.getInitialData,
+          links: [
+            ...store.getInitialData.links,
+            {
+              id: 2,
+              name: 'aaaaa',
+              url: 'https://github.com/logaretm',
+              title: '',
+            },
+          ],
+        }
+      "
+    >
+      ADD
+    </button>
     <FieldArray name="links" key-path="id" v-slot="{ fields, push }">
       <div v-for="(link, index) in fields" :key="link.key">
         <Field
