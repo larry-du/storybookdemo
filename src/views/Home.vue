@@ -1,6 +1,6 @@
 <script setup>
 import { piniaDemo, piniaDemo2 } from "@/piniaStore";
-import { Field, Form, ErrorMessage } from "vee-validate";
+import { Field, Form, ErrorMessage, FieldArray } from "vee-validate";
 // import * as yup from "yup";
 import { yup } from "@/plugins";
 import { ref } from "vue";
@@ -23,19 +23,52 @@ const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
 const schema = yup.object({
   password: yup.string().trim().length(4).required(),
   selectTest: yup.string().trim().required(),
+  links: yup.array().of(yup.object({ title: yup.string().required() })),
 });
 </script>
 
 <template>
-  <!-- <pre>{{ store.getReverseTable }}</pre> -->
-  <ReverseTable :tableData="store.getTable"></ReverseTable>
-
-  <h1>Pinia Demo</h1>
-  <pre>{{ store.getText }}</pre>
-  <pre>{{ selectModel }}</pre>
-  <h1>API Test {{ store.getApiTest }}</h1>
-
-  <Form :validationSchema="schema" @submit="onSubmit">
+  <!-- <h1>Pinia Demo</h1>
+  <h1>API Test {{ store.getApiTest }}</h1> -->
+  <Form
+    v-slot="{ handleReset }"
+    :validationSchema="schema"
+    :initial-values="store.getInitialData"
+    @submit="onSubmit"
+  >
+    <FieldArray name="links" key-path="id" v-slot="{ fields, push }">
+      <div v-for="(link, index) in fields" :key="link.key">
+        <Field
+          :name="`links[${index}].title`"
+          :modelValue="link.value.title"
+          @update:modelValue="link.value.title = $event"
+          v-slot="{ errorMessage, field, value }"
+        >
+          <QInput
+            label="label test"
+            v-bind="field"
+            :modelValue="value"
+            :error="!!errorMessage"
+            :error-message="errorMessage"
+          >
+          </QInput>
+          <pre>{{ errorMessage }}</pre>
+        </Field>
+      </div>
+      <button
+        type="button"
+        @click.prevent="
+          push({
+            id: 2,
+            name: 'aaaaa',
+            url: 'https://github.com/logaretm',
+            title: '',
+          })
+        "
+      >
+        ADD
+      </button>
+    </FieldArray>
     <div style="width: 80%; margin: auto">
       <Field
         name="password"
@@ -75,13 +108,14 @@ const schema = yup.object({
       type="Submit"
       no-caps
       style="background: #ff0080; color: white"
-      label="test"
+      label="Submit Test"
     />
     <QBtn
       type="reset"
       no-caps
       style="background: #ff0080; color: white"
       label="reset"
+      @click.prevent="handleReset"
     />
   </Form>
 

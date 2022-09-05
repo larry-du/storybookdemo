@@ -109,13 +109,15 @@ export default defineStore("piniaDemo", {
         address: "No17. 189, Grove St, Los Angeles",
         id: 1111,
       },
-      // {
-      //   date: "2016-05-01",
-      //   name: "Tom154kkk23",
-      //   address: "No18. 189, Grove St, Los Angeles",
-      //   id: 1555,
-      // },
     ],
+    initialData: {
+      links: [
+        { id: 1, name: "link", url: "https://github.com/logaretm", title: "" },
+        { id: 3, name: "aaa", url: "https://github.com/logaretm", title: "b" },
+        { id: 4, name: "bbb", url: "https://github.com/logaretm", title: "c" },
+        { id: 5, name: "ccc", url: "https://github.com/logaretm", title: "d" },
+      ],
+    },
   }),
   actions: {
     addFoo(count) {
@@ -146,6 +148,9 @@ export default defineStore("piniaDemo", {
     },
     getTable() {
       return this.tableData;
+    },
+    getInitialData() {
+      return this.initialData;
     },
     // getReverseTable() {
     //   const [item] = this.tableData;

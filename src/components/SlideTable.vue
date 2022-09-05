@@ -121,7 +121,6 @@ table {
   table-layout: fixed;
   border-collapse: collapse;
   border: 1px solid;
-  overflow: hidden;
 }
 
 thead {

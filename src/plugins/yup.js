@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 yup.setLocale({
   mixed: {
-    required: "${path}- J 個要填阿",
+    required: "J 個要填阿",
   },
   string: {
     email: "${path} 須為有效的電子信箱",

@@ -14,6 +14,7 @@
   width: 90%;
   margin: auto;
   text-align: center;
+  // overflow: hidden;
 }
 
 a + a {

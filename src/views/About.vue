@@ -10,8 +10,11 @@ const particlesInit = async (engine) => {
 </script>
 
 <template>
-  <SlideTable :tableData="store.getTable"></SlideTable>
-  <ReverseTable :tableData="store.getTable"></ReverseTable>
+  <div class="container">
+    <SlideTable :tableData="store.getTable"></SlideTable>
+
+    <ReverseTable :tableData="store.getTable"></ReverseTable>
+  </div>
   <Particles
     id="tsparticles"
     :particlesInit="particlesInit"
@@ -27,4 +30,8 @@ const particlesInit = async (engine) => {
   left: 0
   right: 0
   z-index: -1
+.container
+  width: 1400px
+  margin: auto
+  position: relative
 </style>

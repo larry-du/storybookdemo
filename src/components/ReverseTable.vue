@@ -75,18 +75,8 @@ const nextTable = () => {
     @touchstart="touchStartPosition = $event.touches[0].screenX"
     @touchend="touchEnd"
   >
-    <thead>
-      <!-- <transition-group tag="tr" :name="effect"> -->
-      <!-- <tr>
-        <th key="empty"></th>
-        <th v-for="head in tableHead" :key="head">{{ head }}</th>
-      </tr> -->
-      <!-- </transition-group> -->
-    </thead>
-    <!-- <transition-group tag="tbody" :name="effect"> -->
     <tbody>
       <tr v-for="filled in tableHead" :key="filled">
-        <!-- <th scope="row">{{ filled }}</th> -->
         <transition-group :name="effect">
           <td
             class="test"
@@ -101,7 +91,6 @@ const nextTable = () => {
         </transition-group>
       </tr>
     </tbody>
-    <!-- </transition-group> -->
   </table>
   <div class="operation">
     <button @click.prevent="preTable" :disabled="countStart <= 0">prev</button>

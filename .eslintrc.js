@@ -16,7 +16,12 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
-    "prettier/prettier": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off", //禁用 console
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off", //禁用 debugger
     "vue/require-default-prop": "off", // 關閉 prop 無設定 default值

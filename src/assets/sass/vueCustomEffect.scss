@@ -6,12 +6,9 @@
 .list-leave-active {
   position: absolute;
 }
-.list-enter-to {
-  transform: translateX(0);
-}
 .list-enter-from {
   opacity: 0;
-  transform: translateX(-100%);
+  transform: translateX(-10%);
 }
 .list-leave-to,.list-leave-from {
   opacity: 0;
@@ -20,18 +17,15 @@
 .listReverse-enter-active,
 .listReverse-leave-active,
 .listReverse-move {
-  transition: opacity 0.7s, transform 20s;
+  transition: opacity 0.7s, transform 0.7s;
   
 }
 .listReverse-leave-active {
   position: absolute;
 }
-.listReverse-enter-to {
-  transform: translateX(0);
-}
 .listReverse-enter-from {
   opacity: 0;
-  transform: translateX(100%);
+  transform: translateX(10%);
 }
 .listReverse-leave-to,.listReverse-leave-from {
   opacity: 0;

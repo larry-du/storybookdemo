@@ -8,15 +8,15 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
-    beforeEnter: async (to, from, next) => {
-      try {
-        const store = piniaDemo();
-        await store.fetchApiTest();
-      } catch (err) {
-        console.log(err);
-      }
-      next();
-    },
+    // beforeEnter: async (to, from, next) => {
+    //   try {
+    //     const store = piniaDemo();
+    //     await store.fetchApiTest();
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    //   next();
+    // },
   },
   {
     path: "/about",
