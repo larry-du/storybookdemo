@@ -11,7 +11,7 @@ const onSubmit = (values) => {
   console.log("Submitted", values);
   // resetForm();
 };
-console.log(store);
+// console.log(store);
 
 const selectModel = ref("");
 const isShow = ref(false);
