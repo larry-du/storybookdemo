@@ -80,7 +80,7 @@ import "./page.css";
 import MyHeader from "./Header.vue";
 
 export default {
-  name: "my-page",
+  name: "MyPage",
 
   components: { MyHeader },
 

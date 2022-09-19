@@ -18,6 +18,15 @@ const isShow = ref(false);
 
 const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
 
+const updateText = computed({
+  get() {
+    return inputTest.value;
+  },
+  set(newData) {
+    inputTest.value = newData;
+  },
+});
+
 // const schema = yup.object({
 //   password: yup
 //     .string()
@@ -42,12 +51,28 @@ const currentSchema = computed(() => {
     ...validateArr,
   });
 });
+
+const inputTest = ref("");
 </script>
 
 <template>
   <!-- <h1>Pinia Demo</h1>
   <h1>API Test {{ store.getApiTest }}</h1> -->
   <!-- {{ currentSchema }} -->
+  <pre>{{ inputTest }}</pre>
+  <BaseInput
+    titleStyle="blue"
+    label="Title"
+    placeHolder="type something"
+    :modelValue="inputTest"
+    @update:modelValue="inputTest = $event"
+  ></BaseInput>
+
+  <BaseInput
+    label="V-model"
+    placeHolder="type something"
+    v-model="updateText"
+  ></BaseInput>
   <Form
     v-slot="{ handleReset }"
     :validationSchema="currentSchema"

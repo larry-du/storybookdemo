@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     BaseButton: typeof import('./src/components/BaseButton.vue')['default']
+    BaseInput: typeof import('./src/components/BaseInput.vue')['default']
     Button: typeof import('./src/components/Button.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     ReverseTable: typeof import('./src/components/ReverseTable.vue')['default']

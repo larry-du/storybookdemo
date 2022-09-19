@@ -8,7 +8,7 @@
 import { reactive, computed } from "vue";
 
 export default {
-  name: "my-button",
+  name: "MyButton",
 
   props: {
     label: {
