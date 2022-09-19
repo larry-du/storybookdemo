@@ -241,7 +241,7 @@ const inputTest = ref("");
   <div style="margin-top: 20px">
     <BaseButton
       title="custom button"
-      @click="
+      @buttonClick="
         secondStore.addFoo2({
           ...secondStore.getFoo2,
           number: Number(secondStore.getFoo2.number + 1),
