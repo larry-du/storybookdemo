@@ -22,7 +22,7 @@ const { title, buttonStyle, disabled } = toRefs(props);
   <button
     type="button"
     :disabled="disabled"
-    class="baseButton"
+    class="baseButton baseButton--theme"
     :class="[buttonStyle, { disabled: disabled }]"
     @click.prevent="$emit('buttonClick')"
   >
@@ -31,31 +31,46 @@ const { title, buttonStyle, disabled } = toRefs(props);
 </template>
 
 <style lang="sass" scoped>
+.baseButton--theme
+  --theme-background: #F4F4F4
+  --theme-textColor: #54667A
+  --theme-border: #F4F4F4
+  --theme-hover-background: #54667A
+  --theme-hover-textColor: #FFFFFF
+  --theme-hover-border: #54667A
+
+.baseButton--theme.navy
+  --theme-background: #374A60
+  --theme-textColor: #fff
+  --theme-border: #374A60
+  --theme-hover-background: #fff
+  --theme-hover-textColor: #374A60
+  --theme-hover-border: #374A60
+
+.baseButton--theme.white
+  --theme-background: #ffffff
+  --theme-textColor: #54667A
+  --theme-border: #54667A
+  --theme-hover-background: #54667A
+  --theme-hover-textColor: #FFFFFF
+  --theme-hover-border: #54667A
+
 .baseButton
-    background-color: #F4F4F4
-    color: #54667A
-    border: 1px solid #DDDDDD
+    background-color: var(--theme-background)
+    color: var(--theme-textColor)
+    border: 1px solid var(--theme-border)
     font-size: 16px
     padding: 7px
     border-radius: 5px
     outline: unset
     cursor: pointer
     &:hover
-      color: #FFFFFF
-      background-color: #54667A
-      border: 1px solid #54667A
+      color: var(--theme-hover-textColor)
+      background-color: var(--theme-hover-background)
+      border: 1px solid var(--theme-hover-border)
     .editIcon
       display: none
     &.disabled
       opacity: 50%
       cursor: not-allowed
-.baseButton.navy
-    color: #fff
-    background-color: #374A60
-.baseButton.white
-    background-color: #FFFFFF
-    &:hover
-      color: #FFFFFF
-      background-color: #54667A
-      border: 1px solid #54667A
 </style>
