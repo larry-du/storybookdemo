@@ -1,4 +1,5 @@
 import BaseButton from "../components/BaseButton.vue";
+
 export default {
   title: "Base/BaseButton",
   component: BaseButton,
@@ -24,7 +25,7 @@ const Template = (args) => ({
   components: { BaseButton },
   setup() {
     const onClick = () => {
-      //   alert("Click");
+      // alert("Click");
       // console.log("hi");
     };
     return { args, onClick };
@@ -35,5 +36,5 @@ const Template = (args) => ({
 export const Button = Template.bind({});
 Button.args = {
   title: "Demo",
-  buttonStyle: "",
+  buttonStyle: "none",
 };

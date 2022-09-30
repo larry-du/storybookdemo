@@ -15,6 +15,10 @@ module.exports = {
     ecmaVersion: 2022,
     sourceType: "module",
   },
+  settings: {
+    "mdx/code-blocks": true,
+    "mdx/language-mapper": {},
+  },
   rules: {
     "prettier/prettier": [
       "error",

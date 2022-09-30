@@ -72,8 +72,8 @@ const nextTable = () => {
 
 <template>
   <table
-    @touchstart="touchStartPosition = $event.touches[0].screenX"
-    @touchend="touchEnd"
+    @touchstart.passive="touchStartPosition = $event.touches[0].screenX"
+    @touchend.passive="touchEnd"
   >
     <tbody>
       <tr v-for="filled in tableHead" :key="filled">

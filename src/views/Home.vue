@@ -18,15 +18,6 @@ const isShow = ref(false);
 
 const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
 
-const updateText = computed({
-  get() {
-    return inputTest.value;
-  },
-  set(newData) {
-    inputTest.value = newData;
-  },
-});
-
 // const schema = yup.object({
 //   password: yup
 //     .string()
@@ -53,13 +44,24 @@ const currentSchema = computed(() => {
 });
 
 const inputTest = ref("");
+const vModelTest = ref("");
+
+const updateText = computed({
+  get() {
+    return vModelTest.value;
+  },
+  set(newData) {
+    vModelTest.value = newData;
+  },
+});
 </script>
 
 <template>
   <!-- <h1>Pinia Demo</h1>
   <h1>API Test {{ store.getApiTest }}</h1> -->
   <!-- {{ currentSchema }} -->
-  <pre>{{ inputTest }}</pre>
+  <pre>{{ `inputTest-${inputTest}` }}</pre>
+  <pre>{{ `vModelTest-${vModelTest}` }}</pre>
   <BaseInput
     titleStyle="blue"
     label="Title"
