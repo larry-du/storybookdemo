@@ -1,8 +1,12 @@
 <script setup>
 import { loadFull } from "tsparticles";
+// import { ref } from "vue";
 import { piniaDemo, piniaDemo2 } from "@/piniaStore";
 const store = piniaDemo();
 const second = piniaDemo2();
+const test = () => {
+  console.log("hi");
+};
 
 const particlesInit = async (engine) => {
   await loadFull(engine);
@@ -12,8 +16,12 @@ const particlesInit = async (engine) => {
 <template>
   <div class="container">
     <SlideTable :tableData="store.getTable"></SlideTable>
-
-    <ReverseTable :tableData="store.getTable"></ReverseTable>
+    <Test @check="test"></Test>
+    <ReverseTable
+      aria-label="A nice button"
+      @click="test"
+      :tableData="store.getTable"
+    ></ReverseTable>
   </div>
   <Particles
     id="tsparticles"

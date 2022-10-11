@@ -17,5 +17,6 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     SlideTable: typeof import('./src/components/SlideTable.vue')['default']
     Table: typeof import('./src/components/Table.vue')['default']
+    Test: typeof import('./src/components/Test.vue')['default']
   }
 }

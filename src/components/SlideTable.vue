@@ -52,11 +52,11 @@ const touchEnd = (e) => {
 
   if (changePosition - touchStartPosition.value > rightDistance) {
     if (countStart.value <= 0) return;
-    preTable();
+    return preTable();
   }
   if (changePosition - touchStartPosition.value < leftDistance) {
     if (countStart.value >= totalSet.value * perCount.value) return;
-    nextTable();
+    return nextTable();
   }
 };
 

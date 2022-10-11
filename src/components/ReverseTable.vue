@@ -1,6 +1,6 @@
 <script setup>
 import "@/assets/sass/vueCustomEffect.scss";
-import { ref, computed, toRefs, onMounted, onUnmounted } from "vue";
+import { ref, computed, toRefs, onMounted, onUnmounted, useAttrs } from "vue";
 
 const props = defineProps({
   tableData: {
@@ -8,6 +8,7 @@ const props = defineProps({
     default: () => [],
   },
 });
+defineEmits(["click"]);
 
 const { tableData } = toRefs(props);
 
@@ -19,6 +20,8 @@ const touchStartPosition = ref(0);
 
 onMounted(() => {
   window.addEventListener("resize", reCount);
+  // const attrs = useAttrs();
+  // console.log(attrs);
 });
 
 onUnmounted(() => {
@@ -52,11 +55,11 @@ const touchEnd = (e) => {
 
   if (changePosition - touchStartPosition.value > rightDistance) {
     if (countStart.value <= 0) return;
-    preTable();
+    return preTable();
   }
   if (changePosition - touchStartPosition.value < leftDistance) {
     if (countStart.value >= totalSet.value * perCount.value) return;
-    nextTable();
+    return nextTable();
   }
 };
 
@@ -69,8 +72,14 @@ const nextTable = () => {
   effect.value = "listReverse";
 };
 </script>
+<script>
+export default {
+  inheritAttrs: false,
+};
+</script>
 
 <template>
+  <h1 @click="$emit('click')">HHHHHHHHHHHH</h1>
   <table
     @touchstart.passive="touchStartPosition = $event.touches[0].screenX"
     @touchend.passive="touchEnd"
