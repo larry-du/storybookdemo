@@ -14,7 +14,7 @@ export default defineStore("piniaDemo2", {
         detect_on: "canvas",
         events: {
           onClick: {
-            enable: false,
+            enable: true,
             mode: "push",
           },
           onHover: {
@@ -44,13 +44,13 @@ export default defineStore("piniaDemo2", {
       },
       particles: {
         color: {
-          value: ["#b61924", "#333333", "999999"],
+          value: ["#333333"],
         },
         links: {
           color: "#222",
           distance: 250,
           enable: true,
-          opacity: 0.5,
+          opacity: 0.3,
           width: 1,
         },
         // collisions: {
@@ -74,26 +74,26 @@ export default defineStore("piniaDemo2", {
         number: {
           density: {
             enable: true,
-            area: 2000,
+            area: 299,
           },
-          value: 50,
+          value: 20,
         },
         opacity: {
           value: 1,
           random: true,
         },
         shape: {
-          type: ["image"],
-          // type: "circle",
-          image: {
-            src: "https://i.imgur.com/Mq887tw.png",
-            width: 500,
-            height: 500,
-          },
+          // type: ["image"],
+          type: "circle",
+          // image: {
+          //   src: "https://i.imgur.com/Mq887tw.png",
+          //   width: 500,
+          //   height: 500,
+          // },
         },
         size: {
           random: true,
-          value: 50,
+          value: 10,
         },
       },
       detectRetina: true,

@@ -1,4 +1,17 @@
-import { Quasar } from "quasar";
+import {
+  Quasar,
+  QLayout,
+  QHeader,
+  QToolbar,
+  QToolbarTitle,
+  QBtn,
+  QAvatar,
+  QTabs,
+  QRouteTab,
+  QDrawer,
+  QPageContainer,
+  QFooter,
+} from "quasar";
 
 import "@quasar/extras/material-icons/material-icons.css";
 
@@ -7,7 +20,20 @@ import "quasar/src/css/index.sass";
 export default {
   install(app) {
     app.use(Quasar, {
-      plugins: {},
+      components: [
+        QLayout,
+        QHeader,
+        QToolbar,
+        QToolbarTitle,
+        QBtn,
+        QAvatar,
+        QTabs,
+        QRouteTab,
+        QDrawer,
+        QPageContainer,
+        QFooter,
+      ],
+      plugins: [],
     });
   },
 };
