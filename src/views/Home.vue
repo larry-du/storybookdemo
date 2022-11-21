@@ -96,7 +96,7 @@ const { errorMessage: demoError, value: demo } = useField(
   "demo",
   currentSchema.value.fields.demo,
   {
-    initialValue: store.getText,
+    initialValue: store.getPiniaText,
   },
 );
 </script>
@@ -108,7 +108,12 @@ const { errorMessage: demoError, value: demo } = useField(
     titleStyle="blue"
     label="demo"
     placeHolder="type something"
-    @update:modelValue="demo = $event"
+    @update:modelValue="
+      (event) => {
+        demo = event;
+        store.piniaText = event;
+      }
+    "
     :modelValue="demo"
     name="demo"
   ></BaseInput>

@@ -39,7 +39,7 @@ console.log(modelValue.value);
   <input
     id="test"
     @input="$emit('update:modelValue', $event.target.value)"
-    :modelValue="modelValue"
+    :value="modelValue"
     :placeHolder="placeHolder"
     type="text"
     :name="name"
