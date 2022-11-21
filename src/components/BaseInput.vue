@@ -20,10 +20,11 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  name: { type: String, default: "" },
 });
 
-const { placeHolder, modelValue } = toRefs(props);
-
+const { placeHolder, modelValue, name } = toRefs(props);
+console.log(modelValue.value);
 // const updateText = computed({
 //   get() {
 //     return modelValue.value;
@@ -41,6 +42,7 @@ const { placeHolder, modelValue } = toRefs(props);
     :modelValue="modelValue"
     :placeHolder="placeHolder"
     type="text"
+    :name="name"
   />
 
   <!-- <label class="title">V-model</label>

@@ -4,8 +4,9 @@ import mainApi from "@/api/serve";
 export default defineStore("piniaDemo", {
   state: () => ({
     foo: { number: 1 },
-    text: "",
+    text: "bbb",
     apiTest: "",
+    piniaText: "aaa",
     tableData: [
       {
         date: "2016-05-03",
@@ -151,6 +152,9 @@ export default defineStore("piniaDemo", {
     },
     getInitialData() {
       return this.initialData;
+    },
+    getPiniaText() {
+      return this.piniaText;
     },
     // getReverseTable() {
     //   const [item] = this.tableData;
