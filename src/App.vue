@@ -28,6 +28,9 @@ const toggleRightDrawer = () => {
       <div class="links">
         <router-link :to="{ name: 'Home' }">Home</router-link>
         <router-link :to="{ name: 'About' }">About</router-link>
+        <router-link :to="{ name: 'HomeComposition' }"
+          >HomeComposition</router-link
+        >
       </div>
       <q-toolbar class="test">
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />

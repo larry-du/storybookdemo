@@ -1,13 +1,6 @@
 <script setup>
 import { piniaDemo, piniaDemo2 } from "@/piniaStore";
-import {
-  Field,
-  Form,
-  ErrorMessage,
-  FieldArray,
-  useField,
-  useForm,
-} from "vee-validate";
+import { Field, Form, ErrorMessage, FieldArray } from "vee-validate";
 import { yup } from "@/plugins";
 import { ref, computed } from "vue";
 const store = piniaDemo();
@@ -16,31 +9,17 @@ const secondStore = piniaDemo2();
 const onSubmit = (values) => {
   console.log("hi");
   console.log("Submitted", values);
-  // resetForm();
 };
-// console.log(store);
 
 const selectModel = ref("");
 const isShow = ref(false);
 
 const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
 
-// const schema = yup.object({
-//   password: yup
-//     .string()
-//     .trim()
-//     .when("isShow", {
-//       is: true,
-//       then: (schema) => schema.required("必填").typeError("必填"),
-//     }),
-// });
-
 const currentSchema = computed(() => {
   const basic = {
     selectTest: yup.string().trim().required(),
     password: yup.string().trim().length(8).required(),
-    media: yup.string().trim().length(8).required(),
-    demo: yup.string().trim().length(8).required(),
   };
   const validatePassword = isShow.value
     ? { password: yup.string().trim().length(4).required() }
@@ -55,7 +34,6 @@ const currentSchema = computed(() => {
   });
 });
 
-const inputTest = ref("");
 const vModelTest = ref("");
 
 const updateText = computed({
@@ -66,103 +44,11 @@ const updateText = computed({
     vModelTest.value = newData;
   },
 });
-
-const schema = yup.object({
-  email: yup.string().required().email(),
-  password: yup.string().required().min(8),
-});
-
-// const { value, errors } = useForm({
-//   validationSchema: schema,
-// });
-// console.log(currentSchema.value.fields);
-
-// const { value, errorMessage } = useField("password", validateField);
-const { errorMessage: errorPassword, value: password } = useField(
-  "password",
-  currentSchema.value.fields.password,
-  {
-    initialValue: store.getText,
-  },
-);
-const { errorMessage: mediaError, value: media } = useField(
-  "media",
-  currentSchema.value.fields.password,
-  {
-    initialValue: "facebook",
-  },
-);
-const { errorMessage: demoError, value: demo } = useField(
-  "demo",
-  currentSchema.value.fields.demo,
-  {
-    initialValue: store.getPiniaText,
-  },
-);
 </script>
 
 <template>
-  <!-- vee validate composition api -->
-  <!-- <pre>{{ demo }}</pre> -->
-  <BaseInput
-    titleStyle="blue"
-    label="demo"
-    placeHolder="type something"
-    @update:modelValue="
-      (event) => {
-        demo = event;
-        store.piniaText = event;
-      }
-    "
-    :modelValue="demo"
-    name="demo"
-  ></BaseInput>
-  <div>storeText:{{ store.getPiniaText }}</div>
-  <div>testError:{{ demoError }}</div>
-  <!-- <BaseInput
-    titleStyle="blue"
-    label="password"
-    placeHolder="type something"
-    v-model="password"
-    name="password"
-  ></BaseInput> -->
-  <QInput
-    label="password"
-    @update:modelValue="password = $event"
-    :modelValue="password"
-    :error="!!errorPassword"
-    :error-message="errorPassword"
-    name="password"
-  >
-  </QInput>
-  <!-- <pre>test{{ store.text }}</pre> -->
-  <QInput
-    label="label test"
-    @update:modelValue="password = event"
-    :modelValue="password"
-    :error="!!errorPassword"
-    :error-message="errorPassword"
-    name="password"
-  >
-  </QInput>
-  <QSelect
-    filled
-    :options="options"
-    @update:modelValue="media = $event"
-    :modelValue="media"
-    label="Filled"
-    :error="!!mediaError"
-    :error-message="mediaError"
-  />
-
-  <BaseInput
-    label="V-model"
-    placeHolder="type something"
-    v-model="updateText"
-  ></BaseInput>
-
   <!-- vee validate component -->
-  <!-- <Form
+  <Form
     v-slot="{ handleReset }"
     :validationSchema="currentSchema"
     @submit="onSubmit"
@@ -250,7 +136,7 @@ const { errorMessage: demoError, value: demo } = useField(
       >
         <QInput
           maxlength="4"
-          label="label test"
+          label="label"
           v-bind="field"
           :modelValue="value"
           :error="!!errorMessage"
@@ -289,7 +175,7 @@ const { errorMessage: demoError, value: demo } = useField(
       label="reset"
       @click.prevent="handleReset"
     />
-  </Form> -->
+  </Form>
 
   <div>{{ store.getFoo.number }}</div>
   <font-awesome-icon :icon="['fas', 'pen']" />

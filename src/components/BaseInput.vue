@@ -24,7 +24,6 @@ const props = defineProps({
 });
 
 const { placeHolder, modelValue, name } = toRefs(props);
-console.log(modelValue.value);
 // const updateText = computed({
 //   get() {
 //     return modelValue.value;
