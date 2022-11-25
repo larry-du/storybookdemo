@@ -10,13 +10,13 @@ const options = ["Google", "Facebook", "Twitter", "Apple", "Oracle"];
 
 const currentSchema = computed(() => {
   const basic = {
-    selectTest: yup.string().trim().required(),
+    // selectTest: yup.string().trim().required(),
     password: yup
       .string()
       .trim()
       .test("len", "Min 6 numbers", (val) => val.toString().length >= 6)
       .required(),
-    media: yup.string().trim().length(8).required(),
+    // media: yup.string().trim().length(8).required(),
     demo: yup.string().trim().length(8).required(),
   };
   return yup.object({
@@ -27,14 +27,14 @@ const currentSchema = computed(() => {
 const { handleSubmit } = useForm({
   validationSchema: currentSchema.value,
   initialValues: {
-    media: "facebook",
+    // media: "facebook",
     password: store.getText,
     demo: store.getPiniaText,
   },
 });
 
 const { errorMessage: errorPassword, value: password } = useField("password");
-const { errorMessage: mediaError, value: media } = useField("media");
+// const { errorMessage: mediaError, value: media } = useField("media");
 const { errorMessage: demoError, value: demo } = useField("demo");
 // const { errorMessage: errorPassword, value: password } = useField("password", {
 //   initialValue: store.getText,
@@ -65,7 +65,7 @@ const onReset = () => {
 };
 </script>
 <template>
-  <QForm @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+  <QForm @reset="onReset" class="q-gutter-md">
     <BaseInput
       titleStyle="blue"
       label="demo"
@@ -93,14 +93,14 @@ const onReset = () => {
     <!-- <pre>test{{ store.text }}</pre> -->
     <!-- <QInput
       label="label test"
-      @update:modelValue="password = event"
+      @update:modelValue="password = $event"
       :modelValue="password"
       :error="!!errorPassword"
       :error-message="errorPassword"
       name="password"
     >
     </QInput> -->
-    <QSelect
+    <!-- <QSelect
       filled
       :options="options"
       @update:modelValue="media = $event"
@@ -108,9 +108,10 @@ const onReset = () => {
       label="Filled"
       :error="!!mediaError"
       :error-message="mediaError"
-    />
+    /> -->
     <div>
-      <QBtn label="Submit" type="submit" color="primary" />
+      <button @click.prevent="onSubmit">test</button>
+      <QBtn label="Submit" @click.prevent="onSubmit" color="primary" />
       <QBtn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
     </div>
   </QForm>
