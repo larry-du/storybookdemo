@@ -11,6 +11,7 @@ import {
   QDrawer,
   QPageContainer,
   QFooter,
+  Loading,
 } from "quasar";
 
 import "@quasar/extras/material-icons/material-icons.css";
@@ -33,7 +34,12 @@ export default {
         QPageContainer,
         QFooter,
       ],
-      plugins: [],
+      plugins: [Loading],
+      config: {
+        loading: {
+          message: "Some message",
+        },
+      },
     });
   },
 };

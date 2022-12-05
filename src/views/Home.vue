@@ -3,8 +3,15 @@ import { piniaDemo, piniaDemo2 } from "@/piniaStore";
 import { Field, Form, ErrorMessage, FieldArray } from "vee-validate";
 import { yup } from "@/plugins";
 import { ref, computed } from "vue";
+import {
+  useQuasar,
+  // QSpinnerFacebook,
+  // QSpinnerGears,
+  QSpinnerBall,
+} from "quasar";
 const store = piniaDemo();
 const secondStore = piniaDemo2();
+const $q = useQuasar();
 
 const onSubmit = (values) => {
   console.log("hi");
@@ -44,6 +51,19 @@ const updateText = computed({
     vModelTest.value = newData;
   },
 });
+
+const toggleLogin = () => {
+  $q.loading.show({
+    // delay: 400,
+    spinner: QSpinnerBall,
+    customClass: "loadingTest",
+    // opacity: "1",
+    // backgroundColor: "purple",
+  });
+  setTimeout(() => {
+    $q.loading.hide();
+  }, 1000);
+};
 </script>
 
 <template>
@@ -53,6 +73,7 @@ const updateText = computed({
     :validationSchema="currentSchema"
     @submit="onSubmit"
   >
+    <q-btn dense flat round icon="menu" @click="toggleLogin" />
     <div class="arrTest" v-if="store.getInitialData.links.length">
       <div v-for="(link, index) in store.getInitialData.links" :key="link.id">
         <Field
@@ -231,4 +252,9 @@ const updateText = computed({
 .test
   background: #ff0080
   color: white
+</style>
+
+<style lang="sass">
+// .loadingTest .q-loading__backdrop
+//   opacity: 1
 </style>

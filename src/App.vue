@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import { loadFull } from "tsparticles";
-// import { ref } from "vue";
 import { piniaDemo2 } from "@/piniaStore";
 const second = piniaDemo2();
 
@@ -19,10 +18,12 @@ const toggleLeftDrawer = () => {
 const toggleRightDrawer = () => {
   rightDrawerOpen.value = !rightDrawerOpen.value;
 };
+const layoutView = ref("hHh lpR lFf");
 </script>
 
 <template>
-  <q-layout view="hHh lpR lFf">
+  <q-layout :view="layoutView">
+    <!-- <q-layout view="hHh lpR lFf"> -->
     <header>title</header>
     <q-header bordered class="bg-primary text-white" height-hint="98">
       <div class="links">
@@ -93,9 +94,6 @@ const toggleRightDrawer = () => {
   left: 0
   right: 0
   z-index: -1
-
-// .test {
-// }
 
 a + a
   margin-left: 5px

@@ -113,7 +113,12 @@ export default defineStore("piniaDemo", {
     ],
     initialData: {
       links: [
-        { id: 1, name: "link", url: "https://github.com/logaretm", title: "" },
+        {
+          id: 1,
+          name: "link",
+          url: "https://github.com/logaretm",
+          title: "AA",
+        },
         // { id: 3, name: "aaa", url: "https://github.com/logaretm", title: "b" },
         // { id: 4, name: "bbb", url: "https://github.com/logaretm", title: "c" },
         // { id: 5, name: "ccc", url: "https://github.com/logaretm", title: "d" },

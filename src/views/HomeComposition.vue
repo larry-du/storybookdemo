@@ -1,6 +1,6 @@
 <script setup>
 import { piniaDemo, piniaDemo2 } from "@/piniaStore";
-import { useField, useForm } from "vee-validate";
+import { useField, useForm, useFieldArray } from "vee-validate";
 import { yup } from "@/plugins";
 import { ref, computed } from "vue";
 const store = piniaDemo();
@@ -17,25 +17,45 @@ const currentSchema = computed(() => {
       .test("len", "Min 6 numbers", (val) => val.toString().length >= 6)
       .required(),
     // media: yup.string().trim().length(8).required(),
-    demo: yup.string().trim().length(8).required(),
+    // demo: yup.string().trim().length(8).required(),
   };
+  const validateArr = store.getInitialData.links.length
+    ? {
+        links: yup.array().of(
+          yup.object({
+            title: yup.string().trim().required(),
+          }),
+        ),
+      }
+    : basic;
   return yup.object({
     ...basic,
+    ...validateArr,
   });
 });
 
-const { handleSubmit } = useForm({
+const { handleSubmit, errors } = useForm({
   validationSchema: currentSchema.value,
   initialValues: {
     // media: "facebook",
     password: store.getText,
-    demo: store.getPiniaText,
+    // demo: store.getPiniaText,
+    links: store.getInitialData.links,
   },
+  // validateOnMount: false,
 });
 
 const { errorMessage: errorPassword, value: password } = useField("password");
 // const { errorMessage: mediaError, value: media } = useField("media");
-const { errorMessage: demoError, value: demo } = useField("demo");
+// const { errorMessage: demoError, value: demo } = useField("demo");
+const { value: links } = useField("links");
+// const {
+//   push,
+//   update,
+//   prepend,
+//   replace,
+//   fields: linksArr,
+// } = useFieldArray("links");
 // const { errorMessage: errorPassword, value: password } = useField("password", {
 //   initialValue: store.getText,
 // });
@@ -46,15 +66,6 @@ const { errorMessage: demoError, value: demo } = useField("demo");
 //   initialValue: store.getPiniaText,
 // });
 
-// const onSubmit = () => {
-//   // console.log("end");
-//   return handleSubmit(() => {
-//     // console.log(values);
-//     console.log("hi");
-//     alert("hi");
-//   })();
-// };
-
 const onSubmit = handleSubmit((values) => {
   console.log(values);
   // console.log("hi");
@@ -63,10 +74,37 @@ const onSubmit = handleSubmit((values) => {
 const onReset = () => {
   console.log("hi2");
 };
+
+const addNew = () => {
+  // setFieldValue("links", [
+  //   ...links.value,
+  //   {
+  //     id: 2,
+  //     name: "link",
+  //     url: "https://github.com/logaretm",
+  //     title: "",
+  //   },
+  // ]);
+  links.value = [
+    ...links.value,
+    {
+      id: 2,
+      name: "link",
+      url: "https://github.com/logaretm",
+      title: "",
+    },
+  ];
+  // push({
+  //   id: 2,
+  //   name: "link",
+  //   url: "https://github.com/logaretm",
+  //   title: "",
+  // });
+};
 </script>
 <template>
   <QForm @reset="onReset" class="q-gutter-md">
-    <BaseInput
+    <!-- <BaseInput
       titleStyle="blue"
       label="demo"
       placeHolder="type something"
@@ -80,7 +118,7 @@ const onReset = () => {
       name="demo"
     ></BaseInput>
     <div>storeText:{{ store.getPiniaText }}</div>
-    <div>testError:{{ demoError }}</div>
+    <div>testError:{{ demoError }}</div> -->
     <QInput
       label="password"
       @update:modelValue="password = $event"
@@ -90,6 +128,32 @@ const onReset = () => {
       name="password"
     >
     </QInput>
+    <!-- <div class="links" v-if="store.getInitialData.links.length">
+      <QInput
+        v-for="(link, index) in links"
+        :key="link.id"
+        :name="`links[${index}].title`"
+        @update:modelValue="update(index, { ...link.value, title: $event })"
+        :modelValue="link.value.title"
+        :error="!!errors[`links[${index}].title`]"
+        :error-message="errors[`links[${index}].title`]"
+      >
+        {{ links }}
+      </QInput>
+    </div> -->
+    <div class="links" v-if="store.getInitialData.links.length">
+      <QInput
+        v-for="(link, index) in links"
+        :key="link.id"
+        :name="`links[${index}].title`"
+        @update:modelValue="links[index].title = $event"
+        :modelValue="links[index].title"
+        :error="!!errors[`links[${index}].title`]"
+        :error-message="errors[`links[${index}].title`]"
+      >
+        <!-- <div>{{ values.links }}</div> -->
+      </QInput>
+    </div>
     <!-- <pre>test{{ store.text }}</pre> -->
     <!-- <QInput
       label="label test"
@@ -110,7 +174,7 @@ const onReset = () => {
       :error-message="mediaError"
     /> -->
     <div>
-      <button @click.prevent="onSubmit">test</button>
+      <QBtn label="Add" @click.prevent="addNew" color="primary" />
       <QBtn label="Submit" @click.prevent="onSubmit" color="primary" />
       <QBtn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
     </div>
