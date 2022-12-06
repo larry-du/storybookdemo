@@ -73,7 +73,7 @@ const toggleLogin = () => {
     :validationSchema="currentSchema"
     @submit="onSubmit"
   >
-    <q-btn dense flat round icon="menu" @click="toggleLogin" />
+    <QBtn dense flat round icon="menu" @click="toggleLogin" />
     <div class="arrTest" v-if="store.getInitialData.links.length">
       <div v-for="(link, index) in store.getInitialData.links" :key="link.id">
         <Field

@@ -48,7 +48,7 @@ const { handleSubmit, errors } = useForm({
 const { errorMessage: errorPassword, value: password } = useField("password");
 // const { errorMessage: mediaError, value: media } = useField("media");
 // const { errorMessage: demoError, value: demo } = useField("demo");
-const { value: links } = useField("links");
+// const { value: links } = useField("links");
 // const {
 //   push,
 //   update,
@@ -76,6 +76,13 @@ const onReset = () => {
 };
 
 const addNew = () => {
+  store.initialData = {
+    ...store.initialData,
+    links: [
+      ...store.initialData.links,
+      { id: 2, name: "link", url: "https://github.com/logaretm", title: "" },
+    ],
+  };
   // setFieldValue("links", [
   //   ...links.value,
   //   {
@@ -85,15 +92,15 @@ const addNew = () => {
   //     title: "",
   //   },
   // ]);
-  links.value = [
-    ...links.value,
-    {
-      id: 2,
-      name: "link",
-      url: "https://github.com/logaretm",
-      title: "",
-    },
-  ];
+  // links.value = [
+  //   ...links.value,
+  //   {
+  //     id: 2,
+  //     name: "link",
+  //     url: "https://github.com/logaretm",
+  //     title: "",
+  //   },
+  // ];
   // push({
   //   id: 2,
   //   name: "link",
@@ -142,17 +149,22 @@ const addNew = () => {
       </QInput>
     </div> -->
     <div class="links" v-if="store.getInitialData.links.length">
-      <QInput
-        v-for="(link, index) in links"
+      <ValidateInput
+        v-for="(link, index) in store.getInitialData.links"
         :key="link.id"
-        :name="`links[${index}].title`"
-        @update:modelValue="links[index].title = $event"
-        :modelValue="links[index].title"
-        :error="!!errors[`links[${index}].title`]"
-        :error-message="errors[`links[${index}].title`]"
-      >
-        <!-- <div>{{ values.links }}</div> -->
-      </QInput>
+        :fieldName="`links[${index}].title`"
+        @update:modelValue="
+          store.initialData = {
+            ...store.initialData,
+            links: [
+              ...store.initialData.links.slice(0, index),
+              { ...store.initialData.links[index], title: $event },
+              ...store.initialData.links.slice(index + 1),
+            ],
+          }
+        "
+        :modelValue="store.initialData.links[index].title"
+      ></ValidateInput>
     </div>
     <!-- <pre>test{{ store.text }}</pre> -->
     <!-- <QInput

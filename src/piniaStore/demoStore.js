@@ -4,7 +4,7 @@ import mainApi from "@/api/serve";
 export default defineStore("piniaDemo", {
   state: () => ({
     foo: { number: 1 },
-    text: "bbb",
+    text: "bbsssb",
     apiTest: "",
     piniaText: "aaa",
     tableData: [
@@ -117,7 +117,7 @@ export default defineStore("piniaDemo", {
           id: 1,
           name: "link",
           url: "https://github.com/logaretm",
-          title: "AA",
+          title: "",
         },
         // { id: 3, name: "aaa", url: "https://github.com/logaretm", title: "b" },
         // { id: 4, name: "bbb", url: "https://github.com/logaretm", title: "c" },

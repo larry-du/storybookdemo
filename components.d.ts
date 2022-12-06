@@ -18,5 +18,7 @@ declare module '@vue/runtime-core' {
     SlideTable: typeof import('./src/components/SlideTable.vue')['default']
     Table: typeof import('./src/components/Table.vue')['default']
     Test: typeof import('./src/components/Test.vue')['default']
+    Validate: typeof import('./src/components/Validate.vue')['default']
+    ValidateInput: typeof import('./src/components/ValidateInput.vue')['default']
   }
 }
