@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { loadFull } from "tsparticles";
 import { piniaDemo2 } from "@/piniaStore";
 const second = piniaDemo2();
@@ -14,6 +14,10 @@ const rightDrawerOpen = ref(false);
 const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 };
+onMounted(() => {
+  console.log(import.meta.env.DEV);
+  console.log(import.meta.env.VITE_SOME_KEY ?? "2222");
+});
 
 const toggleRightDrawer = () => {
   rightDrawerOpen.value = !rightDrawerOpen.value;
