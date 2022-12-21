@@ -1,5 +1,5 @@
 <script setup>
-import { toRefs, computed } from "vue";
+import { toRefs, computed, useAttrs } from "vue";
 import { useField } from "vee-validate";
 const props = defineProps({
   fieldName: { type: String, default: "" },
@@ -8,7 +8,9 @@ const props = defineProps({
   },
 });
 
-const { fieldName } = toRefs(props);
+const { fieldName, modelValue } = toRefs(props);
+const attr = useAttrs();
+console.log("ValidateInput", attr);
 
 const { errorMessage, handleChange, setTouched } = useField(fieldName);
 const validationListeners = computed(() => {
@@ -47,3 +49,8 @@ const emit = defineEmits(["update:modelValue"]);
 </template>
 
 <style lang="sass" scoped></style>
+<script>
+export default {
+  inheritAttrs: false,
+};
+</script>

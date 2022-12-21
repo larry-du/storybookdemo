@@ -34,7 +34,7 @@ const currentSchema = computed(() => {
   });
 });
 
-const { handleSubmit, errors } = useForm({
+const { handleSubmit, errors, resetForm } = useForm({
   validationSchema: currentSchema.value,
   initialValues: {
     // media: "facebook",
@@ -72,6 +72,7 @@ const onSubmit = handleSubmit((values) => {
   alert("hi");
 });
 const onReset = () => {
+  resetForm();
   console.log("hi2");
 };
 
@@ -165,6 +166,18 @@ const addNew = () => {
         "
         :modelValue="store.initialData.links[index].title"
       ></ValidateInput>
+      <AttrTest
+        @update:modelValue="
+          store.initialData = {
+            ...store.initialData,
+            links: [
+              ...store.initialData.links.slice(0, index),
+              { ...store.initialData.links[index], title: $event },
+              ...store.initialData.links.slice(index + 1),
+            ],
+          }
+        "
+      ></AttrTest>
     </div>
     <!-- <pre>test{{ store.text }}</pre> -->
     <!-- <QInput

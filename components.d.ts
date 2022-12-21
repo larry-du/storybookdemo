@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AttrTest: typeof import('./src/components/AttrTest.vue')['default']
     BaseButton: typeof import('./src/components/BaseButton.vue')['default']
     BaseInput: typeof import('./src/components/BaseInput.vue')['default']
     Button: typeof import('./src/components/Button.vue')['default']
